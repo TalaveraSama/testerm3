@@ -3,9 +3,6 @@ name: Actualizar lista de IPTV
 on:
   schedule:
     - cron: '0 */6 * * *'  # Actualizar cada 6 horas
-  push:
-    branches:
-      - main  # O el nombre de tu rama principal
 
 jobs:
   update_iptv_list:
@@ -17,12 +14,13 @@ jobs:
 
     - name: Descargar lista de IPTV
       run: |
-        curl -sSLo iptv_list.m3u https://m3ukodi.com/iptv/m3ukodiplus.php
+        mkdir -p iptv
+        curl -sSLo iptv/iptv_list.m3u https://m3ukodi.com/iptv/m3ukodiplus.php
 
     - name: Actualizar lista de IPTV en repositorio
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: main  # O el nombre de tu rama principal
-        directory: .
+        directory: iptv
         commit_message: Actualizar lista de IPTV
