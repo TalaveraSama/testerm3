@@ -2,7 +2,7 @@ name: Actualizar lista de IPTV
 
 on:
   schedule:
-    - cron: '* * * * *'  # Actualizar cada minuto
+    - cron: '0 */6 * * *'  # Actualizar cada 6 horas
 
 jobs:
   update_iptv_list:
