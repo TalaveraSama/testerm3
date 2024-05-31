@@ -17,6 +17,11 @@ jobs:
         mkdir -p iptv
         curl -sSLo iptv/iptv_list.m3u https://m3ukodi.com/iptv/m3ukodiplus.php
 
+    - name: Configurar Git
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
     - name: Actualizar lista de IPTV en repositorio
       uses: ad-m/github-push-action@master
       with:
